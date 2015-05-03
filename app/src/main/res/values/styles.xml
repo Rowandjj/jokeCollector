@@ -7,4 +7,18 @@
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
+    <!-- AlertDialog style -->
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/white</item> <!-- 按钮颜色 -->
+        <item name="android:textColorSecondary">@color/white_secondary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:background">@color/purple_second</item> <!-- 弹框背景 -->
+    </style>
+
+
+    <!--<style name="AppCompatButtonStyle" parent="Widget.AppCompat.Button">-->
+        <!--&lt;!&ndash;<item name="android:textColor">#000</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="android:background">#B388FF</item>&ndash;&gt;-->
+        <!--&lt;!&ndash;<item name="android:layout_margin">10dp</item>&ndash;&gt;-->
+    <!--</style>-->
 </resources>

@@ -1,21 +1,22 @@
 package com.taobao.jokecollector.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.taobao.jokecollector.R;
+import com.taobao.jokecollector.app.BaseActivity;
+
+import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
     }
 
 
@@ -42,5 +43,17 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected int getLayoutId()
+    {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView()
+    {
+        ButterKnife.inject(this);
     }
 }
