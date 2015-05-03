@@ -27,6 +27,13 @@ public class BaseFragment extends Fragment
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        VolleyHelper.getInstance().cancel(this);
+    }
+
     protected void toast(String msg)
     {
         Toast.makeText(this.getActivity(), msg, Toast.LENGTH_SHORT).show();
