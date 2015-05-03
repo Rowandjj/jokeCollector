@@ -1,7 +1,9 @@
 package com.taobao.jokecollector.app;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AlertDialog;
@@ -67,6 +69,17 @@ public abstract class BaseActivity extends AppCompatActivity
         VolleyHelper.getInstance().cancel(this);
     }
 
+    protected void startActivity(Class<? extends Activity> target)
+    {
+        startActivity(new Intent(this,target));
+    }
+
+    protected void startActivity(Class<? extends Activity> target,Bundle bundle)
+    {
+        Intent intent = new Intent(this,target);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 
 }
 
