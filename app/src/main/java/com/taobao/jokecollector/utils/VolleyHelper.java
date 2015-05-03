@@ -3,7 +3,7 @@ package com.taobao.jokecollector.utils;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.taobao.jokecollector.app.AppApplication;
+import com.taobao.jokecollector.app.AppEnv;
 
 /**
  * Created by Rowandjj on 2015/5/3.
@@ -11,7 +11,7 @@ import com.taobao.jokecollector.app.AppApplication;
 public class VolleyHelper
 {
     private static VolleyHelper instance = null;
-    private static final RequestQueue queue = Volley.newRequestQueue(AppApplication.getAppContext());
+    private static final RequestQueue queue = Volley.newRequestQueue(AppEnv.getAppContext());
     private VolleyHelper(){}
 
     public static final VolleyHelper getInstance()
