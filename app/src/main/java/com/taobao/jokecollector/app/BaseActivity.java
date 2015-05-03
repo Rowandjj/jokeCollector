@@ -8,7 +8,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.taobao.jokecollector.R;
+import com.taobao.jokecollector.utils.ActivityManager;
+import com.taobao.jokecollector.utils.VolleyHelper;
 
 /**
  * Created by Rowandjj on 2015/5/3.
@@ -20,6 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState, persistentState);
         setContentView(getLayoutId());
+        ActivityManager.getInstance().add(this);
         initView();
         initData();
     }
@@ -49,6 +53,19 @@ public abstract class BaseActivity extends AppCompatActivity
         dialog(this,R.style.AlertDialogStyle,title,msg,"确定","取消",confirm,cancel);
     }
 
+
+    protected void request(Request<?> request)
+    {
+        VolleyHelper.getInstance().request(request,this);
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        ActivityManager.getInstance().remove(this);
+        VolleyHelper.getInstance().cancel(this);
+    }
 
 
 }
