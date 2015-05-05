@@ -22,7 +22,7 @@ public class LogUtil
            Log.i(TAG,msg);
     }
 
-    public static final void i(Class<?> a,String msg)
+    public static final void i(Object a,String msg)
     {
         if(a == null)
             return;
@@ -32,10 +32,10 @@ public class LogUtil
     public static final void d(String TAG,String msg)
     {
         if(BuildConfig.DEBUG && msg != null)
-           Log.d(TAG, msg);
+            Log.d(TAG, msg);
     }
 
-    public static final void d(Class<?> a,String msg)
+    public static final void d(Object a,String msg)
     {
         if(a == null)
             return;
@@ -48,7 +48,7 @@ public class LogUtil
            Log.e(TAG, msg);
     }
 
-    public static final void e(Class<?> a,String msg)
+    public static final void e(Object a,String msg)
     {
         if(a == null)
             return;
@@ -61,7 +61,7 @@ public class LogUtil
            Log.v(TAG, msg);
     }
 
-    public static final void v(Class<?> a,String msg)
+    public static final void v(Object a,String msg)
     {
         if(a == null)
             return;
@@ -74,7 +74,7 @@ public class LogUtil
            Log.w(TAG,msg);
     }
 
-    public static final void w(Class<?> a,String msg)
+    public static final void w(Object a,String msg)
     {
         if(a == null)
             return;

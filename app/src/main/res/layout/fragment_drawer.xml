@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:ripple="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/pink_secondary"
+              android:orientation="vertical"
+              tools:context="com.taobao.jokecollector.ui.fragment.DrawerFragment">
+
+    <com.balysv.materialripple.MaterialRippleLayout
+
+        android:layout_marginTop="15dp"
+        ripple:mrl_rippleColor="@color/pink_third"
+        ripple:mrl_rippleAlpha="0.5"
+        ripple:mrl_rippleHover="true"
+        ripple:mrl_rippleDelayClick="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/menu_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            >
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_about"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingBottom="13dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="13dp"
+                android:text="@string/about"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_medium"/>
+        </LinearLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+    <com.balysv.materialripple.MaterialRippleLayout
+
+        ripple:mrl_rippleColor="@color/pink_third"
+        ripple:mrl_rippleAlpha="0.5"
+        ripple:mrl_rippleHover="true"
+        ripple:mrl_rippleDelayClick="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/menu_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_feedback"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="13dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="13dp"
+                android:text="@string/feedback"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_medium"/>
+        </LinearLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+
+    <com.balysv.materialripple.MaterialRippleLayout
+        ripple:mrl_rippleColor="@color/pink_third"
+        ripple:mrl_rippleAlpha="0.5"
+        ripple:mrl_rippleHover="true"
+        ripple:mrl_rippleDelayClick="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/menu_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_setting"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="13dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="13dp"
+                android:text="@string/settings"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_medium"/>
+        </LinearLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
+</LinearLayout>

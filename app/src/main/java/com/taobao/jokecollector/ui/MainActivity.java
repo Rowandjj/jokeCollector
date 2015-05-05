@@ -3,15 +3,18 @@ package com.taobao.jokecollector.ui;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.taobao.jokecollector.R;
 import com.taobao.jokecollector.app.BaseActivity;
+import com.taobao.jokecollector.ui.fragment.DrawerFragment;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -28,7 +31,11 @@ public final class MainActivity extends BaseActivity
     @InjectView(R.id.container)
     ViewGroup mContainer;
 
+    @InjectView(R.id.menu_container)
+    ViewGroup mMenuContainer;
+
     private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerFragment mDrawerFragment;
 
 
     @Override
@@ -43,10 +50,44 @@ public final class MainActivity extends BaseActivity
         ButterKnife.inject(this);
         setSupportActionBar(mToolBar);
         setStatusBarColor(mToolBar);
-        mDrawerToggle = new ActionBarDrawerToggle(this,mDrawer,mToolBar,R.string.drawer_open,R.string.drawer_close);
+        mDrawerToggle = new ActionBarDrawerToggle(this,mDrawer,mToolBar,R.string.drawer_open,R.string.drawer_close)
+        {
+            @Override
+            public void onDrawerOpened(View drawerView)
+            {
+                super.onDrawerOpened(drawerView);
+                mToolBar.setTitle(R.string.menu);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView)
+            {
+                super.onDrawerClosed(drawerView);
+                mToolBar.setTitle(R.string.app_name);
+            }
+        };
+
         mDrawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
     }
+
+    @Override
+    protected void initData()
+    {
+        FragmentManager manager = getSupportFragmentManager();
+        mDrawerFragment = (DrawerFragment) manager.findFragmentById(R.id.menu_container);
+        if(mDrawerFragment == null)
+        {
+            mDrawerFragment = new DrawerFragment();
+            manager.beginTransaction().replace(R.id.menu_container,mDrawerFragment).commit();
+        }
+
+
+    }
+
+
+
 
     @Override
     public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState)
