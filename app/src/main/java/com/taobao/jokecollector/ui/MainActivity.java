@@ -42,6 +42,7 @@ public final class MainActivity extends BaseActivity
     {
         ButterKnife.inject(this);
         setSupportActionBar(mToolBar);
+        setStatusBarColor(mToolBar);
         mDrawerToggle = new ActionBarDrawerToggle(this,mDrawer,mToolBar,R.string.drawer_open,R.string.drawer_close);
         mDrawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();

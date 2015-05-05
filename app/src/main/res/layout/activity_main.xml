@@ -25,12 +25,11 @@
             ></FrameLayout>
 
         <LinearLayout
-            android:background="@color/purple_second"
-            android:layout_gravity="start"
             android:layout_width="@dimen/drawer_menu_width"
             android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/pink_secondary"
             android:orientation="vertical">
-
         </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
 </RelativeLayout>
