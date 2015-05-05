@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -21,9 +20,9 @@ import com.taobao.jokecollector.utils.VolleyHelper;
 public abstract class BaseActivity extends AppCompatActivity
 {
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+    public void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState, persistentState);
+        super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ActivityManager.getInstance().add(this);
         initView();

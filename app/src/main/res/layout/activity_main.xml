@@ -2,7 +2,35 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/metal_gray"
                 tools:context=".MainActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/app_bar"
+        android:layout_alignParentTop="true"
+        ></include>
 
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        >
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></FrameLayout>
+
+        <LinearLayout
+            android:background="@color/purple_second"
+            android:layout_gravity="start"
+            android:layout_width="@dimen/drawer_menu_width"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </android.support.v4.widget.DrawerLayout>
 </RelativeLayout>
