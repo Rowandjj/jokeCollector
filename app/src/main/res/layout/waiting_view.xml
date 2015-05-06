@@ -7,7 +7,7 @@
     <com.pnikosis.materialishprogress.ProgressWheel
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:id="@+id/progress_wheel"
+        android:id="@+id/waiting_progressbar"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"

@@ -2,7 +2,6 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/metal_gray"
                 tools:context=".MainActivity">
 
     <include
@@ -29,7 +28,6 @@
             android:layout_width="@dimen/drawer_menu_width"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/pink_secondary"
             android:orientation="vertical">
         </LinearLayout>
     </android.support.v4.widget.DrawerLayout>

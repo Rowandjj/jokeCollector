@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.taobao.jokecollector.R;
 import com.taobao.jokecollector.app.BaseActivity;
 import com.taobao.jokecollector.ui.fragment.DrawerFragment;
+import com.taobao.jokecollector.ui.fragment.JokeFragment;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -36,7 +37,7 @@ public final class MainActivity extends BaseActivity
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerFragment mDrawerFragment;
-
+    private JokeFragment mJokeFragment;
 
     @Override
     protected int getLayoutId()
@@ -81,6 +82,13 @@ public final class MainActivity extends BaseActivity
         {
             mDrawerFragment = new DrawerFragment();
             manager.beginTransaction().replace(R.id.menu_container,mDrawerFragment).commit();
+        }
+
+        mJokeFragment = (JokeFragment) manager.findFragmentById(R.id.container);
+        if(mJokeFragment == null)
+        {
+            mJokeFragment = new JokeFragment();
+            manager.beginTransaction().replace(R.id.container,mJokeFragment).commit();
         }
 
 

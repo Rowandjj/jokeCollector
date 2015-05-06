@@ -60,7 +60,6 @@ public abstract class BaseActivity extends AppCompatActivity
         dialog(this, R.style.AlertDialogStyle, title, msg, "确定", "取消", confirm, cancel);
     }
 
-
     protected void request(Request<?> request)
     {
         VolleyHelper.getInstance().request(request, this);
