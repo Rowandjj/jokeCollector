@@ -38,6 +38,7 @@ public class ActivityManager
             stack = new ArrayList<>(DEFAULT_SIZE);
         }
         stack.add(a);
+        LogUtil.d(this,"add activity:"+a);
     }
 
     public void remove(Activity a)
@@ -45,6 +46,7 @@ public class ActivityManager
         if(stack == null || a == null)
             return;
         stack.remove(a);
+        LogUtil.d(this,"remove activity from stack:"+a);
     }
 
     public void finishActivity(Activity a)
@@ -53,12 +55,14 @@ public class ActivityManager
             return;
         remove(a);
         a.finish();
+        LogUtil.d(this,"finish activity:"+a);
     }
 
     public void clearAndExit()
     {
         if(stack == null)
             return;
+        LogUtil.d(this,"stack size:"+stack.size());
         for(Activity a : stack)
             finishActivity(a);
         stack = null;
