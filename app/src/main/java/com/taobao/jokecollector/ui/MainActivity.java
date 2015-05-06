@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import com.taobao.jokecollector.R;
 import com.taobao.jokecollector.app.BaseActivity;
 import com.taobao.jokecollector.model.NetworkEvent;
+import com.taobao.jokecollector.model.RequestDataEvent;
 import com.taobao.jokecollector.ui.fragment.DrawerFragment;
 import com.taobao.jokecollector.ui.fragment.JokeFragment;
 import com.taobao.jokecollector.utils.ActivityManager;
@@ -129,7 +130,6 @@ public final class MainActivity extends BaseActivity
     {
         if(event != null && event.type == NetworkEvent.TYPE_UNAVAILABLE)
         {/*网络不可用*/
-            //防止重复弹出
             dialog("提示", "是否要开启网络？", new DialogInterface.OnClickListener()
             {
                 @Override
@@ -146,7 +146,8 @@ public final class MainActivity extends BaseActivity
             });
         }else
         {
-            //TODO 加载
+            //TODO 通知fragment加载数据
+            EventBus.getDefault().post(new RequestDataEvent());
         }
     }
 

@@ -7,5 +7,5 @@
     <string name="feedback">意见反馈</string>
     <string name="drawer_close">drawer close</string>
     <string name="hello_world">Hello world!</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="exception_text">网络不稳定，下拉刷新重试</string>
 </resources>

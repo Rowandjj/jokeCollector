@@ -9,7 +9,6 @@
         android:id="@+id/swipe_refresh_joke"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         >
 
         <android.support.v7.widget.RecyclerView
@@ -19,6 +18,12 @@
             ></android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ViewStub
+        android:id="@+id/view_error_layout"
+        android:layout="@layout/exception"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <include
         layout="@layout/waiting_view"
