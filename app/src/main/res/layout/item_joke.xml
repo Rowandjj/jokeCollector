@@ -6,14 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     card_view:cardBackgroundColor="@color/white"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="2dp">
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="2dp"
+    card_view:cardPreventCornerOverlap="true"
+    card_view:cardUseCompatPadding="true"
+    card_view:contentPadding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,11 +25,12 @@
             android:orientation="horizontal">
 
             <TextView
+                android:singleLine="true"
                 android:id="@+id/tv_joke_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_medium"
+                android:textColor="@color/primary_text_default_material_light"
+                android:textSize="@dimen/text_size_small"
                 android:textStyle="bold"
                 tools:text="楚奕RJ"/>
 
@@ -36,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/secondary_text_default_material_light"
-                android:textSize="@dimen/text_size_small_secondary"
+                android:textSize="@dimen/text_size_small_third"
                 tools:text="16分钟以前"/>
 
         </LinearLayout>
@@ -46,8 +50,8 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="@dimen/text_size_small"
             tools:text="想嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻按时打算发发"
             />
 
@@ -62,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/secondary_text_default_material_light"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_small_secondary"
                 tools:text="OO 17"/>
 
             <TextView
@@ -72,7 +76,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/tv_joke_like"
                 android:textColor="@color/secondary_text_default_material_light"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_small_secondary"
                 tools:text="XX 10"/>
 
             <TextView
@@ -82,7 +86,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/tv_joke_unlike"
                 android:textColor="@color/secondary_text_default_material_light"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_small_secondary"
                 tools:text="吐槽"/>
 
             <TextView
@@ -92,7 +96,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_toRightOf="@id/tv_tucao_text"
                 android:textColor="@color/secondary_text_default_material_light"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_small_secondary"
                 tools:text="6"/>
 
             <ImageView
