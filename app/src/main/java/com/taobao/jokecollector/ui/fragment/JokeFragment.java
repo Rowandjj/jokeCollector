@@ -3,18 +3,24 @@ package com.taobao.jokecollector.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.pnikosis.materialishprogress.ProgressWheel;
 import com.taobao.jokecollector.R;
 import com.taobao.jokecollector.app.BaseFragment;
+import com.taobao.jokecollector.component.JokeRequest;
+import com.taobao.jokecollector.model.Joke;
 import com.taobao.jokecollector.model.RequestDataEvent;
-import com.taobao.jokecollector.ui.adapter.BounceAnimationAdaptor;
+import com.taobao.jokecollector.ui.adapter.JokeAdapter;
+import com.taobao.jokecollector.ui.view.EndlessRecyclerView;
+import com.taobao.jokecollector.utils.LogUtil;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -29,7 +35,7 @@ public class JokeFragment extends BaseFragment
     ProgressWheel mWaitingView;
 
     @InjectView(R.id.rv_joke_list)
-    RecyclerView mJokeList;
+    EndlessRecyclerView mJokeList;
 
     @InjectView(R.id.swipe_refresh_joke)
     SwipeRefreshLayout mRefreshView;
@@ -38,6 +44,9 @@ public class JokeFragment extends BaseFragment
     ViewStub mViewStub;
 
     private View mErrorView;
+    private JokeAdapter mJokeAdapter;
+
+    private int curPage = 1;
 
     public JokeFragment()
     {
@@ -47,7 +56,7 @@ public class JokeFragment extends BaseFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View rootView =  inflater.inflate(R.layout.fragment_joke, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_joke, container, false);
         ButterKnife.inject(this, rootView);
 
         initView();
@@ -58,21 +67,17 @@ public class JokeFragment extends BaseFragment
 
     private void initView()
     {
-
-        mJokeList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mJokeList.setHasFixedSize(false);
-        mJokeList.setAdapter(new BounceAnimationAdaptor()
+        mJokeAdapter = new JokeAdapter();
+        mJokeList.setAdapter(mJokeAdapter);
+        mJokeList.setOnLoadMoreListener(new EndlessRecyclerView.onLoadMoreListener()
         {
             @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+            public void onLoadMore()
             {
-                return null;
-            }
-
-            @Override
-            public int getItemCount()
-            {
-                return 0;
+                LogUtil.d("TAG","r...");
+                curPage++;
+                loadData();
             }
         });
 //        mRefreshView.setColorSchemeColors();
@@ -81,7 +86,8 @@ public class JokeFragment extends BaseFragment
             @Override
             public void onRefresh()
             {
-
+                curPage = 1;
+                loadData();
             }
         });
     }
@@ -89,12 +95,45 @@ public class JokeFragment extends BaseFragment
     private void initData()
     {
         //TODO 请求网络 成功：hide waitingview，显示数据 失败：hide waitingview，显示errorlayout
-//        request();
 
-        mWaitingView.setVisibility(View.GONE);
-        showErrorView();
+        //TODO 先从缓存里面获取
+
+        loadData();
+        
+        
+//        mWaitingView.setVisibility(View.GONE);
+//        showErrorView();
 
     }
+
+    private void loadData()
+    {
+        request(new JokeRequest(Joke.getRequestUrl(curPage), new Response.Listener<List<Joke>>()
+        {
+            @Override
+            public void onResponse(List<Joke> response)
+            {
+                mWaitingView.setVisibility(View.GONE);
+                mJokeAdapter.addJokes(response);
+                if(mRefreshView.isRefreshing())
+                    mRefreshView.setRefreshing(false);
+            }
+        }, new Response.ErrorListener()
+        {
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                mWaitingView.setVisibility(View.GONE);
+                toast(error.toString());
+
+                if(mRefreshView.isRefreshing())
+                    mRefreshView.setRefreshing(false);
+
+            }
+        }));
+    }
+
+
 
     private void showErrorView()
     {
