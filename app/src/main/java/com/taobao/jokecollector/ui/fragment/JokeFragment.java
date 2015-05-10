@@ -85,7 +85,6 @@ public class JokeFragment extends BaseFragment
             public void onRefresh()
             {
                 curPage = 1;
-                mJokeAdapter.removeAll();
                 requestData();
             }
         });
@@ -112,6 +111,10 @@ public class JokeFragment extends BaseFragment
             public void onResponse(List<Joke> response)
             {
                 mWaitingView.setVisibility(View.GONE);
+                if(curPage == 1)
+                {
+                    mJokeAdapter.removeAll();
+                }
                 mJokeAdapter.addJokes(response);
                 if(mRefreshView.isRefreshing())
                     mRefreshView.setRefreshing(false);
