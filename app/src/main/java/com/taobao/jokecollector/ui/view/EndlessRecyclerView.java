@@ -5,8 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import com.taobao.jokecollector.utils.LogUtil;
-
 /**
  * Created by Rowandjj on 2015/5/7.
  */
@@ -47,7 +45,6 @@ public class EndlessRecyclerView extends RecyclerView
             int lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
             int totalItemCount = mLayoutManager.getItemCount();
 
-            LogUtil.d("TAG","las:"+lastVisibleItem+","+totalItemCount);
             if(mListener != null && lastVisibleItem >= totalItemCount-4 && dy > 0 && !isLoading)
             {
                 isLoading = true;

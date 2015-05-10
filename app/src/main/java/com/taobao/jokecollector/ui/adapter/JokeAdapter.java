@@ -35,6 +35,13 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.ViewHolder> //
         this.notifyItemRangeInserted(mJokes.size(),jokes.size());
     }
 
+    public void removeAll()
+    {
+        int len = this.mJokes.size();
+        this.mJokes.clear();
+        this.notifyItemRangeRemoved(0,len);
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
@@ -94,8 +101,8 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.ViewHolder> //
             jokeAuthor.setText(joke.getComment_author());
             jokeTime.setText(joke.getComment_date());
             jokeContent.setText(joke.getComment_content());
-            likeNum.setText(joke.getVote_positive());
-            unlikeNum.setText(joke.getVote_negative());
+            likeNum.setText("XX "+joke.getVote_positive());
+            unlikeNum.setText("OO "+joke.getVote_negative());
 
             //TODO callback
             commentNum.setText("10");
