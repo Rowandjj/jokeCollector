@@ -14,6 +14,8 @@ public class EndlessRecyclerView extends RecyclerView
 {
     private LinearLayoutManager mLayoutManager;
     private onLoadMoreListener mListener;
+    private boolean isLoading = false;
+
     public EndlessRecyclerView(Context context)
     {
         this(context,null);
@@ -46,11 +48,17 @@ public class EndlessRecyclerView extends RecyclerView
             int totalItemCount = mLayoutManager.getItemCount();
 
             LogUtil.d("TAG","las:"+lastVisibleItem+","+totalItemCount);
-            if(mListener != null && lastVisibleItem >= totalItemCount-4 && dy > 0)
+            if(mListener != null && lastVisibleItem >= totalItemCount-4 && dy > 0 && !isLoading)
             {
+                isLoading = true;
                 mListener.onLoadMore();
             }
         }
+    }
+
+    public void loadFinish()
+    {
+        isLoading = false;
     }
 
     public void setOnLoadMoreListener(onLoadMoreListener listener)

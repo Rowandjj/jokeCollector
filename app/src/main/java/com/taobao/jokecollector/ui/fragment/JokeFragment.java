@@ -117,6 +117,7 @@ public class JokeFragment extends BaseFragment
                 mJokeAdapter.addJokes(response);
                 if(mRefreshView.isRefreshing())
                     mRefreshView.setRefreshing(false);
+                mJokeList.loadFinish();
             }
         }, new Response.ErrorListener()
         {
@@ -128,7 +129,7 @@ public class JokeFragment extends BaseFragment
 
                 if(mRefreshView.isRefreshing())
                     mRefreshView.setRefreshing(false);
-
+                mJokeList.loadFinish();
             }
         }));
     }
