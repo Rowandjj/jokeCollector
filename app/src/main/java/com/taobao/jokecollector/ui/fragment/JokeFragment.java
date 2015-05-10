@@ -96,7 +96,11 @@ public class JokeFragment extends BaseFragment
 
         //TODO 先从缓存里面获取
 
-        requestData();
+        List<Joke> data = JokeRequest.getCache();
+        if(data != null)
+            inflateView(data);
+        else
+             requestData();
 
 //        mWaitingView.setVisibility(View.GONE);
 //        showErrorView();
@@ -110,15 +114,7 @@ public class JokeFragment extends BaseFragment
             @Override
             public void onResponse(List<Joke> response)
             {
-                mWaitingView.setVisibility(View.GONE);
-                if(curPage == 1)
-                {
-                    mJokeAdapter.removeAll();
-                }
-                mJokeAdapter.addJokes(response);
-                if(mRefreshView.isRefreshing())
-                    mRefreshView.setRefreshing(false);
-                mJokeList.loadFinish();
+                inflateView(response);
             }
         }, new Response.ErrorListener()
         {
@@ -135,6 +131,18 @@ public class JokeFragment extends BaseFragment
         }));
     }
 
+    private void inflateView(List<Joke> response)
+    {
+        mWaitingView.setVisibility(View.GONE);
+        if(curPage == 1)
+        {
+            mJokeAdapter.removeAll();
+        }
+        mJokeAdapter.addJokes(response);
+        if(mRefreshView.isRefreshing())
+            mRefreshView.setRefreshing(false);
+        mJokeList.loadFinish();
+    }
 
     private void showErrorView()
     {

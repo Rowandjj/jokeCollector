@@ -8,8 +8,10 @@ import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.taobao.jokecollector.app.AppEnv;
 import com.taobao.jokecollector.model.Joke;
 import com.taobao.jokecollector.utils.LogUtil;
+import com.taobao.jokecollector.utils.SharedPrefUtils;
 
 import java.util.List;
 
@@ -18,7 +20,8 @@ import java.util.List;
  */
 public class JokeRequest extends Request<List<Joke>>
 {
-
+    private static final String CACHE_HOME = "joke";
+    private static final String CACHE_KEY = "data";
     private Response.Listener<List<Joke>> mListener;
 
     public JokeRequest(String url,Response.Listener<List<Joke>> listener,Response.ErrorListener errorListener)
@@ -35,7 +38,10 @@ public class JokeRequest extends Request<List<Joke>>
             String jsonStr = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
             JSONObject object = JSON.parseObject(jsonStr);
             JSONArray array = object.getJSONArray("comments");
-            List<Joke> result = JSON.parseArray(array.toJSONString(),Joke.class);
+            String responseJson = array.toJSONString();
+            //每次请求都把数据加入缓存
+            SharedPrefUtils.cacheStringbyNameAndKey(AppEnv.getAppContext(),CACHE_HOME,CACHE_KEY,responseJson);
+            List<Joke> result = JSON.parseArray(responseJson,Joke.class);
 
             return Response.success(result,HttpHeaderParser.parseCacheHeaders(response));
 
@@ -53,5 +59,17 @@ public class JokeRequest extends Request<List<Joke>>
             mListener.onResponse(response);
         else
             throw new RuntimeException("no listener found");
+    }
+
+    /**
+     * 获取缓存
+     * */
+    public static List<Joke> getCache()
+    {
+        String data = SharedPrefUtils.getStringByNameAndKey(AppEnv.getAppContext(),CACHE_HOME,CACHE_KEY);
+        if(data == null)
+            return null;
+        else
+            return JSON.parseArray(data,Joke.class);
     }
 }
