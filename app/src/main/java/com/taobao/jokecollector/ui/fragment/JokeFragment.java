@@ -18,7 +18,6 @@ import com.taobao.jokecollector.model.Joke;
 import com.taobao.jokecollector.model.RequestDataEvent;
 import com.taobao.jokecollector.ui.adapter.JokeAdapter;
 import com.taobao.jokecollector.ui.view.EndlessRecyclerView;
-import com.taobao.jokecollector.utils.LogUtil;
 
 import java.util.List;
 
@@ -75,19 +74,19 @@ public class JokeFragment extends BaseFragment
             @Override
             public void onLoadMore()
             {
-                LogUtil.d("TAG","r...");
                 curPage++;
-                loadData();
+                requestData();
             }
         });
-//        mRefreshView.setColorSchemeColors();
+        mRefreshView.setColorSchemeResources(R.color.pink_primary, R.color.purple_primary, R.color.red_primary);
         mRefreshView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
             @Override
             public void onRefresh()
             {
                 curPage = 1;
-                loadData();
+                mJokeAdapter.removeAll();
+                requestData();
             }
         });
     }
@@ -98,15 +97,14 @@ public class JokeFragment extends BaseFragment
 
         //TODO 先从缓存里面获取
 
-        loadData();
-        
-        
+        requestData();
+
 //        mWaitingView.setVisibility(View.GONE);
 //        showErrorView();
 
     }
 
-    private void loadData()
+    private void requestData()
     {
         request(new JokeRequest(Joke.getRequestUrl(curPage), new Response.Listener<List<Joke>>()
         {
@@ -135,7 +133,6 @@ public class JokeFragment extends BaseFragment
     }
 
 
-
     private void showErrorView()
     {
         if(mErrorView == null)
@@ -151,7 +148,9 @@ public class JokeFragment extends BaseFragment
     private void hideErrorView()
     {
         if(mErrorView != null)
+        {
             mErrorView.setVisibility(View.GONE);
+        }
     }
 
 
