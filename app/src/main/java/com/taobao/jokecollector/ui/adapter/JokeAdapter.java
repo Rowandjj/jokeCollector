@@ -32,7 +32,7 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.ViewHolder> //
     public void addJokes(List<Joke> jokes)
     {
         this.mJokes.addAll(jokes);
-        this.notifyItemRangeInserted(mJokes.size(),jokes.size());
+        this.notifyItemRangeInserted(mJokes.size(), jokes.size());
     }
 
     public void removeAll()
@@ -43,7 +43,7 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.ViewHolder> //
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_joke,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_joke, parent, false);
 
         return new ViewHolder(itemView);
     }
@@ -89,18 +89,18 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.ViewHolder> //
         public ViewHolder(View itemView)
         {
             super(itemView);
-            ButterKnife.inject(this,itemView);
+            ButterKnife.inject(this, itemView);
         }
 
         public void bindData(Joke joke)
         {
-            if(joke == null)
+            if (joke == null)
                 return;
             jokeAuthor.setText(joke.getComment_author());
             jokeTime.setText(joke.getComment_date());
             jokeContent.setText(joke.getComment_content());
-            likeNum.setText("XX "+joke.getVote_positive());
-            unlikeNum.setText("OO "+joke.getVote_negative());
+            likeNum.setText("XX " + joke.getVote_positive());
+            unlikeNum.setText("OO " + joke.getVote_negative());
 
             //TODO callback
             commentNum.setText("10");
