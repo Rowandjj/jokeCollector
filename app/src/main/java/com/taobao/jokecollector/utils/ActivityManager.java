@@ -60,12 +60,17 @@ public class ActivityManager
 
     public void clearAndExit()
     {
-        if(stack == null)
-            return;
-        LogUtil.d(this,"stack size:"+stack.size());
-        for(Activity a : stack)
-            finishActivity(a);
-        stack = null;
+        if (null != stack)
+        {
+            for (int i = 0, size = stack.size(); i < size; i++)
+            {
+                if (null != stack.get(i))
+                {
+                    stack.get(i).finish();
+                }
+            }
+            stack.clear();
+        }
     }
 
 
